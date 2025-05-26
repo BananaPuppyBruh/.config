@@ -1,0 +1,98 @@
+// -*- mode: jsonc -*-
+//https://github.com/Alexays/Waybar/wiki/Configuration
+{
+    // Waybar at top layer
+    "layer": "top",
+    // Waybar position (top|bottom|left|right)
+    "position": "top",
+    // Waybar height
+    "height": 30,
+    // Waybar width
+    // "width": auto,
+    // Gaps between modules in pixels
+    "spacing": 4,
+
+    // Choose the order of the modules
+    "modules-left": [
+        "hyprland/window"
+    ],
+    "modules-center": [
+        "hyprland/workspaces",
+    ],
+    "modules-right": [
+        "memory",
+        "pulseaudio",
+        "network",
+        "backlight",
+        "clock",
+        "tray",
+    ],
+
+    // Modules configuration
+    "hyprland/workspaces": {
+        "active-only": false,
+        "all-outputs": true,
+        "format": "<sub>{name}</sub> {windows}",
+        "format-window-separator": "",
+        "window-rewrite-default": "",
+        "window-rewrite": {
+            // Windows that contain "foot" in either class or title
+            // For optimization reasons, it will only match against a title if at least one other window explicitly matches against a title.
+            "foot": "", "alacritty": "",
+            "kate": "󱩼",
+            "thunar": "",
+            "code": "󰨞", "Windsurf": "󰨞",
+            "brave": "", "firefox": "",
+            "discord": "", "vesktop": "",
+            "CurseForge": "󰢛",
+            "minecraft": "󰍳", "GT: New Horizons": "󰍳",
+            "Steam": "󰓓",
+            "Spotify": "",
+        },
+        "show-special": true,
+        "special-visible-only": true,
+    },
+
+
+
+    "hyprland/window": {
+        "format": "{title}",
+    },
+
+
+    "memory": {
+        "format": "{}% "
+    },
+    "pulseaudio": {
+        "scroll-step": 1, // %, can be a float
+        "format": " {volume}% {format_source}",
+        "format-muted": "󰟎 {format_source}",
+        "format-bluetooth": " {volume}% {format_source}",
+        "format-bluetooth-muted": "󰟎 0% {format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": " 0%",
+        "on-click": "pavucontrol -t 1",
+        "on-click-right": "pavucontrol -t 5",
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "on-click": "networkmanager_dmenu"
+    },
+    "backlight": {
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "format": "{:%I:%M %p - %b %d - %a}",
+        "tooltip-format": "{:%m/%d/%Y}"
+    },
+    "tray": {
+        "spacing": 10,
+    },
+}
